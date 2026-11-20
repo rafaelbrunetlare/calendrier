@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#102b25">
+  <meta name="description" content="Opération 836 : 24 énigmes de Noël à résoudre jour après jour.">
+  <title>Opération 836 — Le calendrier secret de Noël</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="ambient ambient-one"></div><div class="ambient ambient-two"></div>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="Opération 836, accueil"><span class="brand-mark">✦</span> ATELIER DU PÈRE NOËL</a>
+    <span class="edition">ÉDITION 2026</span>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="eyebrow"><span></span> DOSSIER CONFIDENTIEL <span></span></div>
+      <h1>Opération <em>836</em></h1>
+      <p class="subtitle">Le secret de Noël est entre tes mains.</p>
+      <p class="intro">24 jours. 24 épreuves. 24 nombres à découvrir.<br>Une seule mission : retrouver le mystérieux total.</p>
+      <div class="mission-stamp"><span>MISSION</span><strong>NOËL</strong><span>TOP SECRÈTE</span></div>
+    </section>
+
+    <section class="rules-card">
+      <div class="rules-icon">🎁</div>
+      <div>
+        <h2>Ta mission, si tu l’acceptes…</h2>
+        <p>Ouvre uniquement la case du jour. Résous l’énigme, saisis ta réponse et vérifie-la. Chaque bonne réponse te révèle un nombre.</p>
+        <p class="important">Note impérativement chaque nombre sur une feuille ou dans un carnet. Tu en auras besoin le 24 décembre !</p>
+      </div>
+    </section>
+
+    <section class="calendar-section">
+      <div class="section-heading">
+        <div><span class="eyebrow small">TON PARCOURS</span><h2>Le calendrier de l’Avent</h2></div>
+        <div class="progress" id="progressLabel">0 / 24 épreuves validées</div>
+      </div>
+      <div class="calendar" id="calendar" aria-label="Calendrier de l'Avent"></div>
+      <p class="calendar-note">Les cases s’ouvrent automatiquement chaque matin à minuit. Les cases futures restent secrètes…</p>
+    </section>
+
+    <section class="final-note">
+      <div class="star">✧</div>
+      <p>Un dernier conseil du Père Noël</p>
+      <h2>Ne perds aucun nombre.</h2>
+      <span>Le plus important n’est pas d’aller vite, mais de garder précieusement chaque indice.</span>
+    </section>
+  </main>
+
+  <footer><span>✦</span> FABRIQUÉ AVEC AMOUR ET UN PEU DE MAGIE <span>✦</span></footer>
+
+  <div id="previewNotice" class="preview-notice" hidden>MODE APERÇU — toutes les cases sont ouvertes pour les tests.</div>
+  <div id="reminderToast" class="toast" hidden>✍️ N’oublie pas de noter ton nombre sur papier !</div>
+
+  <dialog id="dayModal" class="day-modal">
+    <div class="modal-inner">
+      <button id="closeModal" class="close" aria-label="Fermer">×</button>
+      <div class="modal-sparkle">✦</div>
+      <div class="eyebrow small" id="activeDayLabel">ÉPREUVE 01 / 24</div>
+      <h2 id="dayTitle">Titre de l’épreuve</h2>
+      <span class="kind-pill" id="dayKind">Énigme</span>
+      <p class="prompt" id="dayPrompt"></p>
+      <button id="hintButton" class="hint-button" type="button">Un petit indice ?</button>
+      <p id="dayHint" class="hint-text" hidden></p>
+      <form id="answerForm">
+        <label for="answerInput">Quel nombre as-tu trouvé ?</label>
+        <div class="answer-row">
+          <input id="answerInput" inputmode="numeric" autocomplete="off" maxlength="3" placeholder="Ton nombre" required>
+          <button type="submit" class="check-button">Vérifier <span>→</span></button>
+        </div>
+        <p id="feedback" class="feedback" aria-live="polite"></p>
+      </form>
+      <div id="solvedPanel" class="solved-panel" hidden>
+        <div class="success-icon">✓</div>
+        <p class="success-title">Mission accomplie !</p>
+        <p class="success-copy">Bravo, tu as trouvé le bon nombre.</p>
+        <div class="number-reveal">Ton nombre : <strong id="revealedNumber">—</strong></div>
+        <p class="write-warning">Note-le impérativement sur ton carnet avant de fermer cette fenêtre.</p>
+        <button id="writeReminder" class="hint-button" type="button">J’ai noté mon nombre</button>
+      </div>
+      <div class="modal-footer">OPÉRATION 836 <span>✦</span> CONFIDENTIEL</div>
+    </div>
+  </dialog>
+  <script src="app.js"></script>
+</body>
+</html>
