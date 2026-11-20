@@ -1,49 +1,44 @@
-# Opération 836 — calendrier de l'Avent
+# Le calendrier secret de Noël
 
-Site statique en français, prêt à publier avec GitHub Pages.
+Site statique en français, prêt à publier avec GitHub Pages. Toutes les épreuves se jouent directement sur le site : aucune carte, aucun objet et aucune intervention de l'organisateur ne sont nécessaires.
 
 ## Contenu
 - `index.html` : page d'accueil et calendrier interactif
-- `style.css` : mise en page responsive, ambiance Noël
-- `app.js` : 24 énigmes, ouverture par date, vérification des réponses et mémorisation locale
+- `style.css` : mise en page responsive, ambiance de Noël
+- `app.js` : 24 énigmes, mini-jeux intégrés, ouverture par date et vérification des réponses
 
 ## Tester le calendrier
-Ouvre `index.html` dans un navigateur. Pour voir toutes les cases sans attendre décembre, ajoute `?preview=1` à l'adresse :
-`http://localhost:8000/?preview=1`
+Ouvre `index.html` dans un navigateur. Pour tester toutes les cases sans attendre décembre, ajoute `?preview=1` à l'adresse.
 
-Pour lancer un petit serveur local depuis le dossier :
+Pour lancer un serveur local depuis le dossier du projet :
 ```bash
 python -m http.server 8000
 ```
 Puis ouvre `http://localhost:8000/?preview=1`.
 
 ## Publier sur GitHub Pages
-1. Crée un dépôt GitHub, par exemple `operation-836`.
+1. Crée un dépôt GitHub, par exemple `calendrier-noel`.
 2. Dépose les trois fichiers (`index.html`, `style.css`, `app.js`) à la racine du dépôt.
 3. Dans GitHub : **Settings → Pages**.
 4. Dans **Build and deployment**, choisis **Deploy from a branch**, branche `main`, dossier `/ (root)`, puis **Save**.
-5. Attends la publication. L'adresse sera généralement `https://TON-PSEUDO.github.io/operation-836/`.
-6. Ouvre cette adresse sur un téléphone pour vérifier l'affichage.
+5. Après publication, l'adresse sera généralement `https://TON-PSEUDO.github.io/calendrier-noel/`.
+6. Teste cette adresse sur un téléphone.
 
 ## Créer le QR code
-Une fois le site publié, copie son URL GitHub Pages (sans `?preview=1`) dans un générateur de QR code, puis télécharge le QR en PNG et joins-le au mail destiné à ta maman.
-Ne partage pas l'URL contenant `?preview=1` : elle permet de tester toutes les cases.
+Une fois le site publié, copie l'URL GitHub Pages (sans `?preview=1`) dans un générateur de QR code. Le QR code destiné à ta maman doit pointer vers l'adresse normale, jamais vers le mode aperçu.
 
-## Dates et fuseau horaire
-Les cases s'ouvrent du 1er au 24 décembre 2026 selon l'heure locale de l'appareil. Les cases déjà ouvertes restent accessibles. Les cases futures restent verrouillées.
+## Déverrouillage et progression
+- Le 1er décembre, seule la case 1 est accessible.
+- Le 2 décembre, les cases 1 et 2 sont accessibles ; la 3 reste verrouillée.
+- Le mécanisme continue ainsi jusqu'au 24 décembre.
+- Les cases déjà ouvertes restent accessibles, même si elles ont été résolues.
+- La progression est enregistrée dans le navigateur de l'appareil utilisé. Elle ne se synchronise pas entre plusieurs appareils.
+- Les dates suivent l'heure locale de l'appareil.
 
-## Progression et réponses
-La progression est enregistrée dans le navigateur utilisé (localStorage). Si ta maman change de téléphone ou de navigateur, sa progression ne sera pas transférée. Le site ne calcule pas la somme et ne révèle jamais le total final.
+## Autonomie des épreuves
+Le rébus, le jeu des gobelets et le dessin d'observation sont intégrés à la page. Les autres énigmes se résolvent à partir des instructions affichées. L'organisateur n'a rien à cacher, dessiner, mélanger ou distribuer.
 
-Les réponses ne sont pas stockées en clair dans le fichier JavaScript : le site compare une empreinte SHA-256 de la réponse. Comme tout site statique public, cela ne constitue toutefois pas une protection absolue contre une personne qui inspecte minutieusement le code.
+## Confidentialité du résultat
+Le site ne donne jamais le total final et ne calcule pas la somme à la place de la joueuse. Chaque nombre est révélé uniquement après validation de la réponse du jour ; elle doit le noter dans son carnet.
 
-## Préparation des épreuves physiques
-- Jour 2 : prépare trois gobelets opaques et une petite balle. Écris `31` sur un papier plié et cache-le sous le gobelet gagnant. Tu peux mélanger les gobelets devant elle.
-- Jour 3 : prépare/dessine cinq rangées de sept étoiles.
-- Jour 7 : tu peux lui présenter les 36 grelots (ou lui faire imaginer les trois douzaines dans l'énigme).
-- Jour 10 : dessine un mini-labyrinthe sur une feuille pour rendre le défi plus concret.
-- Jour 11 : prépare six paires de cartes à retourner. Chaque paire retrouvée vaut 6 points.
-- Jour 13 : dessine quatre fenêtres avec treize flocons chacune.
-- Jour 17 : prépare une petite carte représentant sept sacs de 7 kg chacun.
-
-Les autres épreuves peuvent être résolues directement depuis l'écran.
+Les réponses sont vérifiées à partir d'empreintes SHA-256, et non stockées en clair dans le fichier JavaScript. Comme tout site statique public, cela ne constitue toutefois pas une protection absolue contre une personne qui inspecte minutieusement le code.
