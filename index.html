@@ -1,40 +1,57 @@
 <!doctype html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#102b25">
-  <meta name="description" content="24 énigmes de Noël à résoudre jour après jour.">
-  <title>Le calendrier secret de Noël</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#102b25">
+  <meta name="description" content="Une aventure de Noël à découvrir jour après jour.">
+  <title>Le Grand Mystère de Noël</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="ambient ambient-one"></div><div class="ambient ambient-two"></div>
-  <header class="topbar"><a class="brand" href="#"><span class="brand-mark">✦</span> ATELIER DU PÈRE NOËL</a><span class="edition">ÉDITION 2026</span></header>
+  <div class="snow" aria-hidden="true"></div>
+  <header class="site-header">
+    <div class="eyebrow">Une aventure à découvrir jour après jour</div>
+    <h1>Le Grand Mystère <span>de Noël</span></h1>
+    <p class="intro">Vingt-quatre missions t'attendent. Observe, réfléchis, expérimente… et surtout, note précieusement chaque nombre obtenu.</p>
+    <div class="progress-wrap">
+      <div class="progress-label"><span id="progress-text">0 mission validée</span><span id="progress-percent">0 %</span></div>
+      <div class="progress-track"><div id="progress-bar" class="progress-bar"></div></div>
+    </div>
+  </header>
+
   <main>
-    <section class="hero"><div class="eyebrow"><span></span> DOSSIER CONFIDENTIEL <span></span></div>
-      <h1>Le <em>secret</em> de Noël</h1><p class="subtitle">Une aventure rien que pour toi.</p>
-      <p class="intro">24 jours. 24 épreuves. 24 nombres à découvrir.<br>À toi de résoudre le mystère avant le réveillon…</p>
-      <div class="mission-stamp"><span>MISSION</span><strong>NOËL</strong><span>TOP SECRÈTE</span></div>
+    <section class="calendar-section" aria-labelledby="calendar-title">
+      <div class="section-heading">
+        <div><div class="eyebrow">Décembre</div><h2 id="calendar-title">Le calendrier des missions</h2></div>
+        <p class="small-note">Les portes s'ouvrent au fil des jours.</p>
+      </div>
+      <div id="calendar" class="calendar-grid" aria-live="polite"></div>
     </section>
-    <section class="rules-card"><div class="rules-icon">🎁</div><div><h2>Ta mission, si tu l’acceptes…</h2>
-      <p>Chaque jour, une nouvelle case se déverrouille automatiquement. Résous l’épreuve, saisis ta réponse et vérifie-la pour découvrir ton nombre.</p>
-      <p class="important">Note soigneusement chaque nombre dans ton carnet : tu en auras besoin pour résoudre l’ultime mystère du 24 décembre !</p>
-    </div></section>
-    <section class="calendar-section"><div class="section-heading"><div><span class="eyebrow small">TON PARCOURS</span><h2>Le calendrier de l’Avent</h2></div><div class="progress" id="progressLabel">0 / 24 épreuves validées</div></div>
-      <div class="calendar" id="calendar" aria-label="Calendrier de l'Avent"></div>
-      <p class="calendar-note">Les cases passées restent accessibles. La case du jour s’ouvre à minuit ; les suivantes restent verrouillées.</p>
+
+    <section id="mission-panel" class="mission-panel hidden" aria-live="polite">
+      <div class="panel-topline"><span id="mission-day" class="mission-day">MISSION 01</span><button id="close-mission" class="icon-button" aria-label="Fermer la mission">✕</button></div>
+      <h2 id="mission-title"></h2>
+      <p id="mission-story" class="mission-story"></p>
+      <div id="game-area" class="game-area"></div>
+      <div id="answer-area" class="answer-area">
+        <label for="answer-input">Entre le nombre obtenu</label>
+        <div class="answer-row"><input id="answer-input" inputmode="numeric" autocomplete="off" placeholder="Ton nombre…"><button id="check-answer" class="primary-button">Vérifier</button></div>
+        <p id="feedback" class="feedback" role="status"></p>
+        <button id="hint-button" class="text-button">Besoin d'un indice ?</button>
+        <p id="hint-text" class="hint-text hidden"></p>
+      </div>
+      <div id="success-area" class="success-area hidden">
+        <div class="success-mark">✦</div><h3>Mission accomplie !</h3>
+        <p>Bravo ! Note soigneusement ton nombre sur ta feuille avant de fermer cette fenêtre.</p>
+        <p class="number-reveal">Ton nombre : <strong id="revealed-number"></strong></p>
+        <button id="continue-button" class="primary-button">Retour au calendrier</button>
+      </div>
     </section>
-    <section class="final-note"><div class="star">✧</div><p>Un dernier conseil du Père Noël</p><h2>Ne perds aucun nombre.</h2><span>Chaque réponse compte. Garde-les précieusement jusqu’à la dernière mission.</span></section>
+
+    <section class="reminder"><span class="reminder-icon">✧</span><p><strong>Un conseil important :</strong> garde une trace écrite de chaque nombre. Tu en auras besoin pour résoudre le mystère final.</p></section>
   </main>
-  <footer><span>✦</span> FABRIQUÉ AVEC AMOUR ET UN PEU DE MAGIE <span>✦</span></footer>
-  <div id="previewNotice" class="preview-notice" hidden>MODE APERÇU — toutes les cases sont ouvertes pour les tests.</div><div id="reminderToast" class="toast" hidden>✍️ Parfait, ton nombre est bien noté !</div>
-  <dialog id="dayModal" class="day-modal"><div class="modal-inner"><button id="closeModal" class="close" aria-label="Fermer">×</button>
-    <div class="modal-sparkle">✦</div><div class="eyebrow small" id="activeDayLabel">ÉPREUVE 01 / 24</div><h2 id="dayTitle">Titre de l’épreuve</h2><span class="kind-pill" id="dayKind">Énigme</span>
-    <p class="prompt" id="dayPrompt"></p><div id="challengeArea" class="challenge-area"></div>
-    <button id="hintButton" class="hint-button" type="button">Un petit indice ?</button><p id="dayHint" class="hint-text" hidden></p>
-    <form id="answerForm"><label for="answerInput">Quel nombre as-tu trouvé ?</label><div class="answer-row"><input id="answerInput" inputmode="numeric" autocomplete="off" maxlength="3" placeholder="Ton nombre" required><button type="submit" class="check-button">Vérifier <span>→</span></button></div><p id="feedback" class="feedback" aria-live="polite"></p></form>
-    <div id="solvedPanel" class="solved-panel" hidden><div class="success-icon">✓</div><p class="success-title">Mission accomplie !</p><p class="success-copy">Bravo, tu as trouvé le bon nombre.</p><div class="number-reveal">Ton nombre : <strong id="revealedNumber">—</strong></div><p class="write-warning">Note-le impérativement dans ton carnet avant de fermer cette fenêtre.</p><button id="writeReminder" class="hint-button" type="button">J’ai noté mon nombre</button></div>
-    <div class="modal-footer">DOSSIER CONFIDENTIEL <span>✦</span> ATELIER DU PÈRE NOËL</div>
-  </div></dialog><script src="app.js"></script>
-</body></html>
+  <footer><p>Fait avec amour et une pincée de magie de Noël ✦</p></footer>
+  <script src="app.js"></script>
+</body>
+</html>
