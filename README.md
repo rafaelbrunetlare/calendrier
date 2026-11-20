@@ -1,28 +1,35 @@
 # Le Grand Mystère de Noël
 
+Calendrier de l'Avent interactif en HTML, CSS et JavaScript. Le site fonctionne sans serveur ni intervention de l'organisateur une fois publié.
+
 ## Fichiers
-- `index.html` : structure de la page
-- `style.css` : mise en forme responsive
-- `app.js` : calendrier, mini-jeux, validation des réponses et sauvegarde locale
+
+- `index.html` : structure de la page.
+- `style.css` : mise en forme et adaptation mobile.
+- `app.js` : calendrier, mini-jeux, déverrouillage quotidien et validation des réponses.
 
 ## Tester sur ordinateur
-Ouvre `index.html` dans un navigateur. Pour afficher les 24 jours pendant les tests, ajoute `?preview=1` à l'adresse, ou démarre un serveur local :
 
-```bash
-python -m http.server 8000
-```
+1. Décompresser le dossier.
+2. Ouvrir `index.html` dans un navigateur récent.
+3. Pour afficher les 24 missions pendant les tests, ajouter `?preview=1` à l'adresse locale, par exemple `index.html?preview=1`.
 
-Puis visite `http://localhost:8000/?preview=1`.
+Le mode aperçu est réservé à l'organisateur : ne pas transmettre cette adresse à la joueuse.
 
-## Publication avec GitHub Pages
-1. Crée un dépôt GitHub public nommé `calendrier-avent`.
-2. Ajoute les trois fichiers `index.html`, `style.css` et `app.js` à la racine du dépôt.
-3. Dans Settings > Pages, sélectionne `Deploy from a branch`, branche `main`, dossier `/ (root)`.
-4. Après publication, l'adresse sera `https://TON-PSEUDO.github.io/calendrier-avent/`.
-5. Le QR code doit pointer vers cette adresse sans `?preview=1`.
+## Publier avec GitHub Pages
 
-## À savoir
-- Le calendrier est prévu pour décembre 2026.
-- Les portes s'ouvrent selon la date locale de l'appareil. Le mode `?preview=1` ouvre toutes les portes pour les tests.
-- Les validations sont enregistrées dans le navigateur utilisé (localStorage). Si la joueuse change d'appareil ou de navigateur, sa progression ne sera pas transférée.
-- Pour éviter de révéler les réponses à l'écran, les validations utilisent des empreintes SHA-256. Comme le site est entièrement côté navigateur, une personne techniquement expérimentée pourrait néanmoins inspecter le code : ce n'est pas un système de sécurité inviolable.
+1. Créer un dépôt GitHub (par exemple `calendrier-avent`).
+2. Ajouter les trois fichiers `index.html`, `style.css` et `app.js` à la racine du dépôt.
+3. Dans **Settings → Pages**, choisir la branche principale et le dossier `/root` (ou `/`).
+4. Attendre la publication : GitHub affiche alors l'adresse publique du site.
+5. Tester cette adresse sans `?preview=1` avant de créer le QR code.
+
+## Fonctionnement
+
+- Les missions se déverrouillent selon la date locale, du 1er au 24 décembre 2026.
+- Le mode `?preview=1` ouvre toutes les missions pour les tests.
+- La progression est enregistrée dans le navigateur via `localStorage`.
+- Les réponses sont vérifiées localement. Aucun compte ni service externe n'est nécessaire.
+- Pour repartir de zéro pendant les tests, effacer les données du site dans les paramètres du navigateur.
+
+Remarque : la progression est propre à chaque navigateur et appareil. Si la joueuse change d'appareil ou de navigateur, son avancement ne sera pas transféré automatiquement.
